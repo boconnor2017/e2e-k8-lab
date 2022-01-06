@@ -7,4 +7,6 @@ Step 4: cd /usr/local
 Step 5: git clone https://github.com/boconnor2017/e2e-k8-lab.git
 Step 6: sh e2e-k8-minikube-start.sh
 
-Git repo Cleanup: rm -rf e2e-k8-lab
+Refresh script: refresh-e2e-k8-lab.sh
+rm -rf /usr/local/e2e-k8-lab
+git clone https://github.com/boconnor2017/e2e-k8-lab
