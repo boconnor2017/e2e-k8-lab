@@ -1,1 +1,6 @@
 Kubernetes Home Lab
+
+Step 1: Deploy Photon (photon-ova-4.0-ca7c9e9330.ova)
+Step 2: yum update
+Step 3: yum -y install git
+Step 4: git clone https://github.com/boconnor2017/e2e-k8-lab.git
