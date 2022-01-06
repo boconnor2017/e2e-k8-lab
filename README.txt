@@ -6,3 +6,5 @@ Step 3: yum -y install git
 Step 4: cd /usr/local
 Step 5: git clone https://github.com/boconnor2017/e2e-k8-lab.git
 Step 6: sh e2e-k8-minikube-start.sh
+
+Git repo Cleanup: rm -rf e2e-k8-lab
