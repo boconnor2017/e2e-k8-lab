@@ -1,1 +1,1 @@
-kubectl apply -f deployment.yaml
+docker exec -it <container ID> /bin/bash
