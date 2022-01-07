@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vmwe2e-python
+spec:
+  selector:
+    matchLabels:
+      app: python-helloWorld
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: python-helloWorld
+    spec:
+      containers:
+      - name: python-helloWorld
+        image: vmwe2e/boc-base-python-image-001
