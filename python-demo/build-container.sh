@@ -1,1 +1,1 @@
-docker run -d boc-base-python-image-001
+docker run -t -d boc-base-python-image-001
