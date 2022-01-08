@@ -1,1 +1,1 @@
-docker build -t options-tracker-app-001 .
+docker build -t options-tracker-app-002 .
