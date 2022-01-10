@@ -2,6 +2,7 @@ Kubernetes Home Lab
 
 Step 1: Deploy Photon (photon-ova-4.0-ca7c9e9330.ova)
 Step 1a: default password is changeme
+Step 1b: recommended working directory is /usr/local
 
 Step 2: Prep Photon Script 'vi prep-photon.sh'
 yum update
