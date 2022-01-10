@@ -1,6 +1,3 @@
-# Working code only
-# Please commit to github to ensure you don't lose data
-
 #!/usr/bin/env python
 # This is an open source project from the E2E lab.
 # Code and documentation can be found at https://github.com/boconnor2017/e2e-k8-lab/tree/main/options-tracker-app
@@ -66,7 +63,7 @@ class HelloRequestHandler(BaseHTTPRequestHandler):
     ''')
     html2 = ('''\
     </body>
-    </html>	
+    </html> 
     ''')
     htmlFinal = html1+stockinfoTableHTML+html2
     print("        Final HTML compiled: ")
@@ -79,8 +76,8 @@ class HelloRequestHandler(BaseHTTPRequestHandler):
     print("        Starting textwrap.")
     response_text = textwrap.dedent(htmlFinal)
     print("        Textwrap completed.")
-    server_address = ('', 8000)
-    print("    Starting Web Server on port 8000!")
-    httpd = HTTPServer(server_address, HelloRequestHandler)
-    httpd.serve_forever()
     
+server_address = ('', 8000)
+print("    Starting Web Server on port 8000!")
+httpd = HTTPServer(server_address, HelloRequestHandler)
+httpd.serve_forever()
