@@ -5,7 +5,7 @@ Step 1a: default password is changeme
 Step 1b: recommended working directory is /usr/local
 
 Step 2: Prep Photon Script 'vi prep-photon.sh'
-yum update
+yum -y update
 yum -y install git
 cd /usr/local
 git clone https://github.com/boconnor2017/e2e-k8-lab.git
