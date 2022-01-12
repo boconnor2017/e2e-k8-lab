@@ -16,3 +16,12 @@ Step 4: (from e2e-k8-lab dir) sh e2e-k8-minikube-start.sh
 (Optional) Refresh script: refresh-e2e-k8-lab.sh
 rm -rf /usr/local/e2e-k8-lab
 git clone https://github.com/boconnor2017/e2e-k8-lab
+
+
+**********************************************************
+*******  LABS ********************************************
+**********************************************************
+
+Lab 01: Options Tracker App 
+Step 1: cd /usr/local/e2e-k8-lab/options-tracker-app
+Step 2: sh build-app.sh
