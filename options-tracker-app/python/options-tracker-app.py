@@ -129,9 +129,3 @@ print("Step 6: create_indexHTML(htmlFinalFormatted)")
 create_indexHTML(htmlFinalFormatted)
 print("")
 print("Step 6: completed!")
-
-print("* * * * * * * * * * *")
-print("")
-print("Step 7: Run Web Service")
-runWebServiceCmd = '/usr/sbin/httpd'
-os.system(runWebServiceCmd)
