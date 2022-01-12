@@ -24,7 +24,6 @@ from urllib.request import urlopen
 import certifi
 import json
 from json2html import *
-import os
 
 def get_templateHTML():
     file1 = open("template.html", "r")
