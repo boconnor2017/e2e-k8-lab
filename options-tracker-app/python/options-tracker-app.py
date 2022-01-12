@@ -81,6 +81,12 @@ def format_finalHTML(htmlFinal):
     print(htmlFinalFormatted)
     return htmlFinalFormatted
 
+def create_indexHTML(htmlFinalFormatted):
+    idxFile = open("/var/www/html/index.html", "w")
+    idxFile.write(htmlFinalFormatted)
+    idxFile.close()
+    return
+
 print("* * * * * * * * * * *")
 print("")
 print("Step 1: read template.html, store into variable template_html")
@@ -118,24 +124,7 @@ print("Step 5: completed!")
 
 print("* * * * * * * * * * *")
 print("")
-print("Step 6: class HelloRequestHandler(BaseHTTPRequestHandler)")
-class HelloRequestHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        if self.path != '/':
-            self.send_error(404, "Object not found")
-            return
-        self.send_response(200)
-        self.send_header('Content-type', 'text/html; charset=utf-8')
-        self.end_headers()
-        self.wfile.write(htmlFinalFormatted.encode('utf-8'))
+print("Step 6: create_indexHTML(htmlFinalFormatted)")
+create_indexHTML(htmlFinalFormatted)
 print("")
 print("Step 6: completed!")
-
-print("* * * * * * * * * * *")
-print("")
-print("Step 7: start web server")
-#server_address = ('', 8000)
-#httpd = HTTPServer(server_address, HelloRequestHandler)
-#httpd.serve_forever()
-print("")
-print("Step 7: completed!")
