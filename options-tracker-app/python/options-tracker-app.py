@@ -14,84 +14,128 @@ print(" ")
 print("*****************************************************")
 print("*****************************************************")
 print(" ")
-print("Starting Web Service... ")
-print("    Importing libs.")
+print(" ")
+print(" ")
+print(" ")
+
 import textwrap
 from six.moves.BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from urllib.request import urlopen
 import certifi
 import json
 from json2html import *
-print("    Libs imported successfully.")
-print("    Class HelloRequestHandler starting.")
 
+def get_templateHTML():
+    file1 = open("template.html", "r")
+    template_html = []
+    idx=0
+    for line in file1.readlines():
+        line_num = str(idx)
+        template_html.insert(idx, line)
+        print("Line Number "+line_num+": "+template_html[idx])
+        idx=idx+1
+    return template_html
+
+def get_findata_fromAPI():
+    url = ("https://financialmodelingprep.com/api/v3/quote-short/VMW?apikey=a6019491e15dbeaaeb41242ad459a370")
+    print("url: "+url)
+    print("stockinfo: ")
+    stockinfo = get_jsonparsed_data(url)
+    print(stockinfo)
+    return stockinfo
+
+def get_jsonparsed_data(url):
+    response = urlopen(url, cafile=certifi.where())
+    data = response.read().decode("utf-8")
+    jsonparsed_data = json.loads(data)
+    print(jsonparsed_data)
+    return jsonparsed_data
+
+def convert_findata_toHTML(stockinfo):        
+    stockinfoTableHTML = (json2html.convert(json = stockinfo))
+    print(stockinfoTableHTML)
+    return stockinfoTableHTML
+
+def compile_finalHTML(template_html, stockinfoTableHTML):
+    n=0
+    htmlFinal = template_html
+    for i in template_html:
+        if "####APITABLEHERE####" in template_html[n]:
+            htmlFinal[n] = stockinfoTableHTML
+            print(str(n)+" "+htmlFinal[n])
+        else:
+            htmlFinal[n] = template_html[n]
+            print(str(n)+" "+htmlFinal[n])
+        n=n+1
+    return htmlFinal
+
+def format_finalHTML(htmlFinal):
+    print(htmlFinal)
+    print("")
+    n=0
+    htmlFinalFormatted=""
+    for i in htmlFinal:
+        htmlFinalFormatted=htmlFinalFormatted+htmlFinal[n]
+        n=n+1
+
+    print(htmlFinalFormatted)
+    return htmlFinalFormatted
+
+print("* * * * * * * * * * *")
+print("")
+print("Step 1: read template.html, store into variable template_html")
+template_html = get_templateHTML()
+print("")
+print("Step 1: completed!")
+
+print("* * * * * * * * * * *")
+print("")
+print("Step 2: get_findata_fromAPI(), return stockinfo")
+stockinfo = get_findata_fromAPI()
+print("")
+print("Step 2: completed!")
+
+print("* * * * * * * * * * *")
+print("")
+print("Step 3: convert_findata_toHTML(stockinfo), return stockinfoTableHTML")
+stockinfoTableHTML = convert_findata_toHTML(stockinfo)
+print("")
+print("Step 3: completed!")
+
+print("* * * * * * * * * * *")
+print("")
+print("Step 4: compile_finalHTML(template_html, stockinfoTableHTML), return htmlFinal")
+htmlFinal = compile_finalHTML(template_html, stockinfoTableHTML)
+print("")
+print("Step 4: completed!")
+
+print("* * * * * * * * * * *")
+print("")
+print("Step 5: format_finalHTML(htmlFinal), return htmlFinalFormatted")
+htmlFinalFormatted = format_finalHTML(htmlFinal)
+print("")
+print("Step 5: completed!")
+
+print("* * * * * * * * * * *")
+print("")
+print("Step 6: class HelloRequestHandler(BaseHTTPRequestHandler)")
 class HelloRequestHandler(BaseHTTPRequestHandler):
-    
     def do_GET(self):
-        print("        do_GET(self) starting.")
-
-        def get_jsonparsed_data(url):
-            print("        get_jsonparsed_data(url) starting.")
-            response = urlopen(url, cafile=certifi.where())
-            data = response.read().decode("utf-8")
-            print("        get_jsonparsed_data(url) completed.")
-            return json.loads(data)
-
-        def get_findata_fromAPI():
-            print("        Getting FMP url.")
-            url = ("https://financialmodelingprep.com/api/v3/quote-short/VMW?apikey=a6019491e15dbeaaeb41242ad459a370")
-            print("        url: "+url)
-            print("        Getting stock info.")
-            stockinfo = get_jsonparsed_data(url)
-            print("        Stock Info obtained.")
-            return stockinfo
-
-        def convert_findata_toHTML(stockinfo):        
-            print("        Converting stockinfo to table.")
-            stockinfoTableHTML = (json2html.convert(json = stockinfo))
-            print("        stockinfoTableHTML: "+stockinfoTableHTML)
-            return stockinfoTableHTML
-
-        def compile_finalHTML(stockinfoTableHTML):
-            print("        Compiling final HTML.")
-            html1 = ('''\
-            <html>
-            <head>
-            <title>Options Tracker App Version 1.0</title>
-            </head>
-            <body>
-            <h1>Options Trader Application</h1>
-            ''')
-            html2 = ('''\
-            </body>
-            </html> 
-            ''')
-            htmlFinal = html1+stockinfoTableHTML+html2
-            print("        Final HTML compiled: ")
-            print("* * * * * * * * * * * * * * * * * * * ")
-            print("")
-            print(htmlFinal)
-            print("")
-            print("* * * * * * * * * * * * * * * * * * * ")
-            print("")
-            print("        Starting textwrap.")
-            response_text = textwrap.dedent(htmlFinal)
-            print("        Textwrap completed.")
-            return response_text
-
         if self.path != '/':
             self.send_error(404, "Object not found")
             return
         self.send_response(200)
         self.send_header('Content-type', 'text/html; charset=utf-8')
         self.end_headers()
-        stockinfo = get_findata_fromAPI()
-        stockinfoTableHTML = convert_findata_toHTML(stockinfo)
-        response_text = compile_finalHTML(stockinfoTableHTML)
-        self.wfile.write(response_text.encode('utf-8'))
- 
-    
+        self.wfile.write(htmlFinalFormatted.encode('utf-8'))
+print("")
+print("Step 6: completed!")
+
+print("* * * * * * * * * * *")
+print("")
+print("Step 7: start web server")
 server_address = ('', 8000)
-print("    Starting Web Server on port 8000!")
 httpd = HTTPServer(server_address, HelloRequestHandler)
 httpd.serve_forever()
+print("")
+print("Step 7: completed!")
