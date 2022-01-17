@@ -25,6 +25,8 @@ import certifi
 import json
 from json2html import *
 
+tickr = ["VMW", "GM", "NOK", "F", "INTC", "IDEX", "KGC"]
+
 def get_templateHTML():
     file1 = open("template.html", "r")
     template_html = []
@@ -36,12 +38,14 @@ def get_templateHTML():
         idx=idx+1
     return template_html
 
-def get_findata_fromAPI():
-    url = ("https://financialmodelingprep.com/api/v3/quote-short/VMW?apikey=a6019491e15dbeaaeb41242ad459a370")
-    print("url: "+url)
-    print("stockinfo: ")
-    stockinfo = get_jsonparsed_data(url)
-    print(stockinfo)
+def get_findata_fromAPI(tickr):
+    idx=0;
+    stockinfo = []
+    for i in tickr:
+        url = ("https://financialmodelingprep.com/api/v3/quote-short/"+tickr[idx]+"?apikey=a6019491e15dbeaaeb41242ad459a370")
+        stockinfo.insert(idx, get_jsonparsed_data(url))
+        idx=idx+1
+    print("stockinfo list length: "+str(len(stockinfo)))
     return stockinfo
 
 def get_jsonparsed_data(url):
@@ -96,8 +100,8 @@ print("Step 1: completed!")
 
 print("* * * * * * * * * * *")
 print("")
-print("Step 2: get_findata_fromAPI(), return stockinfo")
-stockinfo = get_findata_fromAPI()
+print("Step 2: get_findata_fromAPI(tickr), return stockinfo")
+stockinfo = get_findata_fromAPI(tickr)
 print("")
 print("Step 2: completed!")
 
