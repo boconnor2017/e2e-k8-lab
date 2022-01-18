@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: options-tracker-app
-        image: vmwe2e/options-tracker-app-004
+        image: vmwe2e/options-tracker-app-005
         ports:
           - containerPort: 8080
 
