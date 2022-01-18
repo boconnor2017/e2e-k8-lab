@@ -82,6 +82,15 @@ def format_finalHTML(htmlFinal):
         htmlFinalFormatted=htmlFinalFormatted+htmlFinal[n]
         n=n+1
 
+    x1=htmlFinalFormatted.replace("<ul>", "")
+    x2=x1.replace("</ul>", "")
+    x3=x2.replace("</li>", "")
+    x4=x3.replace("<li>", "")
+    x5=x4.replace("<table border=\"1\"><thead><tr><th>symbol</th><th>price</th><th>volume</th></tr></thead><tbody>", "")
+    x6=x5.replace("</tbody></table>", "")
+    x7=x6.replace("</body>", "</table></body>")
+    x8=x7.replace("<body>", "<body> <table style=\"width:100%\">")
+    htmlFinalFormatted =x8
     print(htmlFinalFormatted)
     return htmlFinalFormatted
 
