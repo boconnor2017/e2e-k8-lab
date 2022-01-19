@@ -24,6 +24,7 @@ from urllib.request import urlopen
 import certifi
 import json
 from json2html import *
+import requests
 
 tickr = ["VMW", "GM", "NOK", "F", "INTC", "IDEX", "KGC"]
 
@@ -47,6 +48,25 @@ def get_findata_fromAPI(tickr):
         idx=idx+1
     print("stockinfo list length: "+str(len(stockinfo)))
     return stockinfo
+
+def get_findata_fromAPI_v2(tickr):
+    stockinfo = []
+    url = "https://yh-finance.p.rapidapi.com/stock/v2/get-options"
+    idx=0
+    for i in tickr:
+        querystring = {"symbol":tickr[idx],"date":"1562284800","region":"US"}
+        headers = {
+            'x-rapidapi-host': "yh-finance.p.rapidapi.com",
+            'x-rapidapi-key': "53fcd0c825msh7a1a2f8f3846288p141427jsne888db9745f9"
+        }
+        response = requests.request("GET", url, headers=headers, params=querystring)
+        stockinfo.insert(idx, get_jsonparsed_data_v2(response.text))
+        idx=idx+1
+    return stockinfo
+
+def get_jsonparsed_data_v2(data):
+    jsonparsed_data = json.loads(data)
+    return jsonparsed_data
 
 def get_jsonparsed_data(url):
     response = urlopen(url, cafile=certifi.where())
@@ -110,7 +130,7 @@ print("Step 1: completed!")
 print("* * * * * * * * * * *")
 print("")
 print("Step 2: get_findata_fromAPI(tickr), return stockinfo")
-stockinfo = get_findata_fromAPI(tickr)
+stockinfo = get_findata_fromAPI_v2(tickr)
 print("")
 print("Step 2: completed!")
 
