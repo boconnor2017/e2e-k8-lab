@@ -11,5 +11,6 @@ systemctl stop systemd-resolved
 systemctl enable unbound
 systemctl start unbound
 systemctl status unbound
+unbound -V
 rm -f /etc/resolv.conf
 cp resolv.conf /etc.resolv.conf
