@@ -13,6 +13,6 @@ systemctl stop systemd-resolved
 #systemctl status unbound
 #unbound -V
 rm -f /etc/resolv.conf
-cp resolv.conf /etc.resolv.conf
+cp resolv.conf /etc/resolv.conf
 docker run --name my-unbound -d -p 53:53/udp -p 53:53/tcp \
 --restart=always mvance/unbound:latest
