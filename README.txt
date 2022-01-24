@@ -13,18 +13,20 @@ curl https://raw.githubusercontent.com/boconnor2017/e2e-k8-lab/main/refresh-e2e-
 Step 4: sh prep-photon-sh
 Step 5 (optional): sh refresh-e2e-k8-lab.sh
 
-Step 6: (from e2e-k8-lab dir) sh e2e-k8-minikube-start.sh
-
 
 **********************************************************
 *******  LABS ********************************************
 **********************************************************
 
-Lab 01: Options Tracker App 
+Lab 01: Minkube (all labs with *01 requre minikube to be running)
+Step 1: cd /usr/local/e2e-k8-lab/
+Step 2: sh e2e-k8-minikube-start.sh
+
+Lab 02: Options Tracker App (*01)
 Step 1: cd /usr/local/e2e-k8-lab/options-tracker-app
 Step 2: sh build-app.sh
 
-Lab 02: Prerequisites for Tanzu
+Lab 03: Build local DNS server for lab
 Step 1: cd /usr/local/e2e-k8-lab/dns-server
 Step 2: sh set-dns-ip.sh 
 Step 3: sh build-dns-server.sh
