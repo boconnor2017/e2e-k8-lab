@@ -6,6 +6,10 @@ cat /etc/unbound/unbound.conf
 iptables -A INPUT -i eth0 -p udp --dport 53 -j ACCEPT
 iptables-save >/etc/systemd/scripts/ip4save
 iptables -L
+systemctl disable systemd-resolved.service
+systemctl stop systemd-resolved
 systemctl enable unbound
 systemctl start unbound
 systemctl status unbound
+rm -f /etc/resolv.conf
+cp resolv.conf /etc.resolv.conf
