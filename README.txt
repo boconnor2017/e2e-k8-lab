@@ -26,4 +26,5 @@ Step 2: sh build-app.sh
 
 Lab 02: Prerequisites for Tanzu
 Step 1: cd /usr/local/e2e-k8-lab/dns-server
-Step 2: 
+Step 2: sh set-dns-ip.sh 
+Step 3: sh build-dns-server.sh
