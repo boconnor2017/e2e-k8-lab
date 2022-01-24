@@ -6,3 +6,4 @@ systemctl stop systemd-resolved
 rm -f /etc/resolv.conf
 cp resolv.conf /etc/resolv.conf
 docker build -t e2e-local-dns-01 .
+docker run --name e2e-local-dns -d -p 53:53 e2e-local-dns-01:latest
