@@ -10,7 +10,7 @@ curl https://raw.githubusercontent.com/boconnor2017/e2e-k8-lab/main/prep-photon.
 Step 3 (optional):
 curl https://raw.githubusercontent.com/boconnor2017/e2e-k8-lab/main/refresh-e2e-k8-lab.sh >> refresh-e2e-k8-lab.sh
 
-Step 4: sh prep-photon-sh
+Step 4: sh prep-photon.sh
 Step 5 (optional): sh refresh-e2e-k8-lab.sh
 
 
