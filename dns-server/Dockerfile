@@ -1,1 +1,0 @@
-FROM technitium/dns-server
