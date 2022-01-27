@@ -30,4 +30,12 @@ Lab 03: Build local DNS server for lab
 Step 1: cd /usr/local/e2e-k8-lab/dns-server
 Step 2: sh set-dns-ip.sh #Note: there are network specific configurations that you may need to edit before running this, default subnet 172.16.0.0/24
 Step 3: sh build-dns-server.sh
-Step 4: login to UI at http://<DNS Server IP Address>:5380
+Step 4: login to UI at http://<DNS Server IP Address>:5380 with 'admin' credentials #Note: you will be asked to change credentials during first time login
+Step 5: Zones > Add Zone > Add record:
+  - Name: @
+  - Type: A
+  - TTL: default
+  - IPv4 Address: <DNS Server IP Address>
+  - Add reverse (PTR) record: yes
+  - Create reverse zone for PTR record: do this only on the first record
+  - Save
