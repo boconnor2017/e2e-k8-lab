@@ -28,5 +28,6 @@ Step 2: sh build-app.sh
 
 Lab 03: Build local DNS server for lab
 Step 1: cd /usr/local/e2e-k8-lab/dns-server
-Step 2: sh set-dns-ip.sh 
+Step 2: sh set-dns-ip.sh #Note: there are network specific configurations that you may need to edit before running this, default subnet 172.16.0.0/24
 Step 3: sh build-dns-server.sh
+Step 4: login to UI at http://<DNS Server IP Address>:5380
