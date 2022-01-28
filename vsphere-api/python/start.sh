@@ -2,7 +2,5 @@ curl https://raw.githubusercontent.com/boconnor2017/e2e-k8-lab/main/options-trac
 sh install-python3.sh
 yum -y install git
 python3 -m pip install pyvmomi
-python3 -m pip install tools
-python3 -m pip install cli
 python3 -m pip install git+https://github.com/vmware/pyvmomi.git
 python3 build-tanzu-lab.py
