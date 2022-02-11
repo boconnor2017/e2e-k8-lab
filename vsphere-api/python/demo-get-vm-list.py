@@ -4,8 +4,8 @@
 import pyVim
 from pyVim import connect
 
-host_ip = "172.16.0.201"
-host_pass = "VMware1!"
+host_ip = "" #Enter IP Address of ESXi Host
+host_pass = "" #Enter Password of ESXi Host
 
 #Connect to a host
 my_cluster = connect.ConnectNoSSL(host_ip, 443, "root", host_pass)
